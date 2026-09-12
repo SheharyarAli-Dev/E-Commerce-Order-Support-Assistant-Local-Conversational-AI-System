@@ -7,7 +7,12 @@ Verifies schema completeness and prints a summary of the loaded data.
 
 import json
 import sys
+import os
 from pathlib import Path
+
+# Force UTF-8 output on Windows
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = Path(__file__).parent.parent
 PRODUCTS_FILE = ROOT / "data" / "products.json"
