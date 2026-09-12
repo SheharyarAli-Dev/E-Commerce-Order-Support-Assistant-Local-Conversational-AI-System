@@ -1,0 +1,303 @@
+[
+  {
+    "order_id": "ORD-10001",
+    "customer_name": "Alice Johnson",
+    "email": "alice.j@email.com",
+    "order_date": "2026-09-01",
+    "status": "Delivered",
+    "tracking_number": "TRK-88421-US",
+    "carrier": "FedEx",
+    "estimated_delivery": "2026-09-05",
+    "actual_delivery": "2026-09-04",
+    "shipping_address": "42 Maple St, Austin, TX 78701",
+    "items": [
+      {"sku": "ELEC-001", "name": "ProSound Wireless Earbuds X1", "qty": 1, "price": 49.99, "variant": "Midnight Black"},
+      {"sku": "ACC-002",  "name": "CablePro Braided USB-C to USB-C Cable 2m", "qty": 2, "price": 9.99, "variant": "Black"}
+    ],
+    "subtotal": 69.97,
+    "shipping_cost": 0.00,
+    "total": 69.97,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10002",
+    "customer_name": "Brian Patel",
+    "email": "brian.p@email.com",
+    "order_date": "2026-09-05",
+    "status": "Shipped",
+    "tracking_number": "TRK-94512-US",
+    "carrier": "UPS",
+    "estimated_delivery": "2026-09-13",
+    "actual_delivery": null,
+    "shipping_address": "17 Oak Avenue, Seattle, WA 98101",
+    "items": [
+      {"sku": "ELEC-004", "name": "PixelTab 10 Android Tablet", "qty": 1, "price": 199.99, "variant": "Space Gray / 128GB"},
+      {"sku": "ACC-001",  "name": "SlimShield Phone Case — Universal 6.1\"", "qty": 1, "price": 12.99, "variant": "Matte Black"}
+    ],
+    "subtotal": 212.98,
+    "shipping_cost": 0.00,
+    "total": 212.98,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10003",
+    "customer_name": "Carmen Rivera",
+    "email": "carmen.r@email.com",
+    "order_date": "2026-09-07",
+    "status": "Processing",
+    "tracking_number": null,
+    "carrier": null,
+    "estimated_delivery": "2026-09-15",
+    "actual_delivery": null,
+    "shipping_address": "8 Birch Lane, Miami, FL 33101",
+    "items": [
+      {"sku": "APRL-001", "name": "UrbanFit Classic T-Shirt", "qty": 3, "price": 19.99, "variant": "M / White"},
+      {"sku": "APRL-003", "name": "FlexRun Athletic Shorts", "qty": 1, "price": 24.99, "variant": "M / Charcoal"}
+    ],
+    "subtotal": 84.96,
+    "shipping_cost": 5.99,
+    "total": 90.95,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10004",
+    "customer_name": "David Kim",
+    "email": "david.k@email.com",
+    "order_date": "2026-09-03",
+    "status": "Delivered",
+    "tracking_number": "TRK-71209-US",
+    "carrier": "USPS",
+    "estimated_delivery": "2026-09-08",
+    "actual_delivery": "2026-09-07",
+    "shipping_address": "321 Pine Road, Chicago, IL 60601",
+    "items": [
+      {"sku": "HOME-001", "name": "CalmBreeze Air Purifier S300", "qty": 1, "price": 129.99, "variant": "White"}
+    ],
+    "subtotal": 129.99,
+    "shipping_cost": 0.00,
+    "total": 129.99,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10005",
+    "customer_name": "Eva Nguyen",
+    "email": "eva.n@email.com",
+    "order_date": "2026-09-09",
+    "status": "Out for Delivery",
+    "tracking_number": "TRK-55873-US",
+    "carrier": "FedEx",
+    "estimated_delivery": "2026-09-12",
+    "actual_delivery": null,
+    "shipping_address": "5 Elm Court, Denver, CO 80201",
+    "items": [
+      {"sku": "SPRT-002", "name": "ZenFlow Yoga Mat Pro", "qty": 1, "price": 54.99, "variant": "Teal"},
+      {"sku": "HOME-003", "name": "NightOwl LED Desk Lamp", "qty": 1, "price": 34.99, "variant": "White"}
+    ],
+    "subtotal": 89.98,
+    "shipping_cost": 0.00,
+    "total": 89.98,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10006",
+    "customer_name": "Frank Osei",
+    "email": "frank.o@email.com",
+    "order_date": "2026-09-10",
+    "status": "Processing",
+    "tracking_number": null,
+    "carrier": null,
+    "estimated_delivery": "2026-09-17",
+    "actual_delivery": null,
+    "shipping_address": "99 Cedar Blvd, Atlanta, GA 30301",
+    "items": [
+      {"sku": "ELEC-002", "name": "VoltCharge 65W USB-C Charger", "qty": 1, "price": 29.99, "variant": "White"},
+      {"sku": "ELEC-005", "name": "SoundBar Mini BT5 Portable Speaker", "qty": 1, "price": 44.99, "variant": "Ocean Blue"}
+    ],
+    "subtotal": 74.98,
+    "shipping_cost": 5.99,
+    "total": 80.97,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10007",
+    "customer_name": "Grace Lee",
+    "email": "grace.l@email.com",
+    "order_date": "2026-08-28",
+    "status": "Return Requested",
+    "tracking_number": "TRK-44201-US",
+    "carrier": "UPS",
+    "estimated_delivery": "2026-09-02",
+    "actual_delivery": "2026-09-01",
+    "shipping_address": "14 Willow Way, Portland, OR 97201",
+    "items": [
+      {"sku": "APRL-002", "name": "TrailBlazer Waterproof Jacket", "qty": 1, "price": 84.99, "variant": "L / Olive Green"}
+    ],
+    "subtotal": 84.99,
+    "shipping_cost": 0.00,
+    "total": 84.99,
+    "payment_status": "Paid",
+    "return_reason": "Size too large — wants size M",
+    "return_status": "Return label emailed, awaiting item drop-off"
+  },
+  {
+    "order_id": "ORD-10008",
+    "customer_name": "Hassan Ali",
+    "email": "hassan.a@email.com",
+    "order_date": "2026-09-06",
+    "status": "Shipped",
+    "tracking_number": "TRK-63847-US",
+    "carrier": "FedEx",
+    "estimated_delivery": "2026-09-14",
+    "actual_delivery": null,
+    "shipping_address": "77 Magnolia Dr, Boston, MA 02101",
+    "items": [
+      {"sku": "SPRT-001", "name": "IronGrip Adjustable Dumbbells 5–52.5 lb", "qty": 1, "price": 299.99, "variant": "Pair"}
+    ],
+    "subtotal": 299.99,
+    "shipping_cost": 0.00,
+    "total": 299.99,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10009",
+    "customer_name": "Isabella Torres",
+    "email": "isabella.t@email.com",
+    "order_date": "2026-09-02",
+    "status": "Delivered",
+    "tracking_number": "TRK-29104-US",
+    "carrier": "USPS",
+    "estimated_delivery": "2026-09-07",
+    "actual_delivery": "2026-09-06",
+    "shipping_address": "3 Sunrise Terrace, Phoenix, AZ 85001",
+    "items": [
+      {"sku": "HOME-002", "name": "BrewMaster Pour-Over Coffee Kit", "qty": 1, "price": 39.99, "variant": "Silver"},
+      {"sku": "BOOK-001", "name": "Deep Work by Cal Newport (Paperback)", "qty": 1, "price": 14.99, "variant": "Paperback"},
+      {"sku": "BOOK-002", "name": "Atomic Habits by James Clear (Hardcover)", "qty": 1, "price": 18.99, "variant": "Hardcover"}
+    ],
+    "subtotal": 73.97,
+    "shipping_cost": 0.00,
+    "total": 73.97,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10010",
+    "customer_name": "James Wright",
+    "email": "james.w@email.com",
+    "order_date": "2026-09-08",
+    "status": "Shipped",
+    "tracking_number": "TRK-81923-US",
+    "carrier": "UPS",
+    "estimated_delivery": "2026-09-16",
+    "actual_delivery": null,
+    "shipping_address": "62 Rosewood Ave, Nashville, TN 37201",
+    "items": [
+      {"sku": "ELEC-003", "name": "ClearView 4K Webcam Pro", "qty": 1, "price": 89.99, "variant": "Graphite"},
+      {"sku": "HOME-004", "name": "SmartPlug Mini Wi-Fi Outlet (2-Pack)", "qty": 1, "price": 22.99, "variant": "2-pack"}
+    ],
+    "subtotal": 112.98,
+    "shipping_cost": 0.00,
+    "total": 112.98,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10011",
+    "customer_name": "Karen Pham",
+    "email": "karen.p@email.com",
+    "order_date": "2026-09-04",
+    "status": "Delivered",
+    "tracking_number": "TRK-37651-US",
+    "carrier": "FedEx",
+    "estimated_delivery": "2026-09-09",
+    "actual_delivery": "2026-09-09",
+    "shipping_address": "29 Lakeview Rd, Minneapolis, MN 55401",
+    "items": [
+      {"sku": "ACC-001", "name": "SlimShield Phone Case — Universal 6.1\"", "qty": 1, "price": 12.99, "variant": "Dusty Rose"},
+      {"sku": "ACC-002", "name": "CablePro Braided USB-C to USB-C Cable 2m", "qty": 1, "price": 9.99, "variant": "White"}
+    ],
+    "subtotal": 22.98,
+    "shipping_cost": 5.99,
+    "total": 28.97,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10012",
+    "customer_name": "Liam Chen",
+    "email": "liam.c@email.com",
+    "order_date": "2026-09-11",
+    "status": "Processing",
+    "tracking_number": null,
+    "carrier": null,
+    "estimated_delivery": "2026-09-18",
+    "actual_delivery": null,
+    "shipping_address": "11 Harbor Point, San Francisco, CA 94101",
+    "items": [
+      {"sku": "ELEC-001", "name": "ProSound Wireless Earbuds X1", "qty": 1, "price": 49.99, "variant": "Pearl White"},
+      {"sku": "ELEC-002", "name": "VoltCharge 65W USB-C Charger", "qty": 1, "price": 29.99, "variant": "Black"}
+    ],
+    "subtotal": 79.98,
+    "shipping_cost": 0.00,
+    "total": 79.98,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10013",
+    "customer_name": "Maya Robinson",
+    "email": "maya.r@email.com",
+    "order_date": "2026-08-25",
+    "status": "Refund Processed",
+    "tracking_number": "TRK-19832-US",
+    "carrier": "USPS",
+    "estimated_delivery": "2026-08-30",
+    "actual_delivery": "2026-08-29",
+    "shipping_address": "58 Amber Lane, Dallas, TX 75201",
+    "items": [
+      {"sku": "HOME-003", "name": "NightOwl LED Desk Lamp", "qty": 1, "price": 34.99, "variant": "Black"}
+    ],
+    "subtotal": 34.99,
+    "shipping_cost": 0.00,
+    "total": 34.99,
+    "payment_status": "Refunded",
+    "return_reason": "Item arrived damaged",
+    "return_status": "Full refund of $34.99 issued on 2026-09-03 to original payment method"
+  },
+  {
+    "order_id": "ORD-10014",
+    "customer_name": "Noah Scott",
+    "email": "noah.s@email.com",
+    "order_date": "2026-09-10",
+    "status": "Processing",
+    "tracking_number": null,
+    "carrier": null,
+    "estimated_delivery": "2026-09-18",
+    "actual_delivery": null,
+    "shipping_address": "84 Canyon View Dr, Las Vegas, NV 89101",
+    "items": [
+      {"sku": "SPRT-002", "name": "ZenFlow Yoga Mat Pro", "qty": 1, "price": 54.99, "variant": "Purple"},
+      {"sku": "APRL-003", "name": "FlexRun Athletic Shorts", "qty": 2, "price": 24.99, "variant": "L / Charcoal"}
+    ],
+    "subtotal": 104.97,
+    "shipping_cost": 0.00,
+    "total": 104.97,
+    "payment_status": "Paid"
+  },
+  {
+    "order_id": "ORD-10015",
+    "customer_name": "Olivia Martin",
+    "email": "olivia.m@email.com",
+    "order_date": "2026-09-07",
+    "status": "Shipped",
+    "tracking_number": "TRK-72514-US",
+    "carrier": "FedEx",
+    "estimated_delivery": "2026-09-15",
+    "actual_delivery": null,
+    "shipping_address": "36 Crescent St, Philadelphia, PA 19101",
+    "items": [
+      {"sku": "HOME-001", "name": "CalmBreeze Air Purifier S300", "qty": 1, "price": 129.99, "variant": "Black"},
+      {"sku": "HOME-004", "name": "SmartPlug Mini Wi-Fi Outlet (2-Pack)", "qty": 2, "price": 22.99, "variant": "2-pack"}
+    ],
+    "subtotal": 175.97,
+    "shipping_cost": 0.00,
+    "total": 175.97,
+    "payment_status": "Paid"
+  }
+]

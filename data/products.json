@@ -1,0 +1,345 @@
+[
+  {
+    "sku": "ELEC-001",
+    "name": "ProSound Wireless Earbuds X1",
+    "category": "Electronics",
+    "price": 49.99,
+    "stock": 120,
+    "description": "True wireless earbuds with 30hr battery life, ANC, IPX5 water resistance.",
+    "variants": [
+      {"color": "Midnight Black", "stock": 60},
+      {"color": "Pearl White", "stock": 40},
+      {"color": "Navy Blue", "stock": 20}
+    ],
+    "specs": {
+      "battery_life": "30 hours total (7.5hr buds + 22.5hr case)",
+      "connectivity": "Bluetooth 5.3",
+      "water_resistance": "IPX5",
+      "anc": true,
+      "weight": "5g per bud"
+    }
+  },
+  {
+    "sku": "ELEC-002",
+    "name": "VoltCharge 65W USB-C Charger",
+    "category": "Electronics",
+    "price": 29.99,
+    "stock": 200,
+    "description": "GaN 65W USB-C fast charger compatible with laptops, tablets, and phones.",
+    "variants": [
+      {"color": "White", "stock": 120},
+      {"color": "Black", "stock": 80}
+    ],
+    "specs": {
+      "wattage": "65W",
+      "ports": "1x USB-C, 1x USB-A",
+      "compatibility": "PD 3.0, QC 4.0",
+      "weight": "115g"
+    }
+  },
+  {
+    "sku": "ELEC-003",
+    "name": "ClearView 4K Webcam Pro",
+    "category": "Electronics",
+    "price": 89.99,
+    "stock": 45,
+    "description": "4K 30fps webcam with autofocus, built-in stereo mic, and privacy shutter.",
+    "variants": [
+      {"color": "Graphite", "stock": 45}
+    ],
+    "specs": {
+      "resolution": "4K @ 30fps / 1080p @ 60fps",
+      "fov": "90 degrees",
+      "autofocus": true,
+      "mic": "Built-in dual stereo microphone",
+      "connection": "USB-A 3.0"
+    }
+  },
+  {
+    "sku": "ELEC-004",
+    "name": "PixelTab 10 Android Tablet",
+    "category": "Electronics",
+    "price": 199.99,
+    "stock": 30,
+    "description": "10.4\" FHD Android 14 tablet with 6GB RAM, 128GB storage, and stylus support.",
+    "variants": [
+      {"color": "Space Gray", "storage": "128GB", "stock": 20},
+      {"color": "Sky Blue", "storage": "128GB", "stock": 10}
+    ],
+    "specs": {
+      "display": "10.4\" FHD+ 2000x1200",
+      "processor": "Octa-core 2.0GHz",
+      "ram": "6GB",
+      "storage": "128GB (expandable to 1TB via microSD)",
+      "battery": "7040mAh",
+      "os": "Android 14"
+    }
+  },
+  {
+    "sku": "APRL-001",
+    "name": "UrbanFit Classic T-Shirt",
+    "category": "Apparel",
+    "price": 19.99,
+    "stock": 350,
+    "description": "100% organic cotton everyday t-shirt with relaxed fit.",
+    "variants": [
+      {"size": "XS", "color": "White", "stock": 30},
+      {"size": "S",  "color": "White", "stock": 50},
+      {"size": "M",  "color": "White", "stock": 60},
+      {"size": "L",  "color": "White", "stock": 50},
+      {"size": "XL", "color": "White", "stock": 40},
+      {"size": "XS", "color": "Black", "stock": 25},
+      {"size": "S",  "color": "Black", "stock": 40},
+      {"size": "M",  "color": "Black", "stock": 30},
+      {"size": "L",  "color": "Black", "stock": 15},
+      {"size": "XL", "color": "Black", "stock": 10}
+    ],
+    "specs": {
+      "material": "100% organic cotton",
+      "fit": "Relaxed",
+      "care": "Machine wash cold"
+    }
+  },
+  {
+    "sku": "APRL-002",
+    "name": "TrailBlazer Waterproof Jacket",
+    "category": "Apparel",
+    "price": 84.99,
+    "stock": 80,
+    "description": "3-layer waterproof jacket with taped seams, ideal for hiking and outdoor use.",
+    "variants": [
+      {"size": "S",  "color": "Olive Green", "stock": 15},
+      {"size": "M",  "color": "Olive Green", "stock": 25},
+      {"size": "L",  "color": "Olive Green", "stock": 20},
+      {"size": "XL", "color": "Olive Green", "stock": 10},
+      {"size": "M",  "color": "Navy",        "stock": 10}
+    ],
+    "specs": {
+      "material": "3-layer polyester shell, DWR coating",
+      "waterproof_rating": "10,000mm",
+      "breathability": "8,000g/m²/24hr",
+      "features": "Taped seams, adjustable hood, 3 pockets"
+    }
+  },
+  {
+    "sku": "APRL-003",
+    "name": "FlexRun Athletic Shorts",
+    "category": "Apparel",
+    "price": 24.99,
+    "stock": 220,
+    "description": "Lightweight 5\" running shorts with built-in liner and zip pocket.",
+    "variants": [
+      {"size": "S",  "color": "Charcoal", "stock": 50},
+      {"size": "M",  "color": "Charcoal", "stock": 70},
+      {"size": "L",  "color": "Charcoal", "stock": 60},
+      {"size": "XL", "color": "Charcoal", "stock": 40}
+    ],
+    "specs": {
+      "material": "88% polyester, 12% spandex",
+      "length": "5 inch inseam",
+      "features": "Built-in liner, reflective strips, zip pocket"
+    }
+  },
+  {
+    "sku": "HOME-001",
+    "name": "CalmBreeze Air Purifier S300",
+    "category": "Home",
+    "price": 129.99,
+    "stock": 55,
+    "description": "True HEPA air purifier for rooms up to 300 sq ft. Removes 99.97% of particles.",
+    "variants": [
+      {"color": "White", "stock": 35},
+      {"color": "Black", "stock": 20}
+    ],
+    "specs": {
+      "coverage": "300 sq ft",
+      "filter": "True HEPA + activated carbon pre-filter",
+      "noise_level": "22–50 dB",
+      "cadr": "180 m³/hr",
+      "filter_life": "6–8 months",
+      "auto_mode": true
+    }
+  },
+  {
+    "sku": "HOME-002",
+    "name": "BrewMaster Pour-Over Coffee Kit",
+    "category": "Home",
+    "price": 39.99,
+    "stock": 90,
+    "description": "Stainless steel pour-over dripper with server, thermometer, and gooseneck kettle.",
+    "variants": [
+      {"color": "Silver", "stock": 60},
+      {"color": "Matte Black", "stock": 30}
+    ],
+    "specs": {
+      "capacity": "600ml server",
+      "material": "304 stainless steel",
+      "includes": "Dripper, server, thermometer, gooseneck kettle"
+    }
+  },
+  {
+    "sku": "HOME-003",
+    "name": "NightOwl LED Desk Lamp",
+    "category": "Home",
+    "price": 34.99,
+    "stock": 140,
+    "description": "Eye-care LED desk lamp with 5 brightness levels, 3 color temps, and USB charging port.",
+    "variants": [
+      {"color": "White", "stock": 80},
+      {"color": "Black", "stock": 60}
+    ],
+    "specs": {
+      "brightness_levels": 5,
+      "color_temperatures": "Warm (2700K) / Neutral (4000K) / Cool (6500K)",
+      "usb_port": "5W USB-A charging",
+      "power": "12W LED",
+      "flicker_free": true
+    }
+  },
+  {
+    "sku": "SPRT-001",
+    "name": "IronGrip Adjustable Dumbbells 5–52.5 lb",
+    "category": "Sports",
+    "price": 299.99,
+    "stock": 20,
+    "description": "Dial-select adjustable dumbbell set replacing 15 pairs. 5 to 52.5 lb in 2.5 lb increments.",
+    "variants": [
+      {"set": "Pair (2 dumbbells)", "stock": 20}
+    ],
+    "specs": {
+      "weight_range": "5–52.5 lb per dumbbell",
+      "increments": "2.5 lb",
+      "mechanism": "Dial-select",
+      "material": "Steel plates with ABS housing",
+      "dimensions": "17\" x 8\" x 7\" per dumbbell"
+    }
+  },
+  {
+    "sku": "SPRT-002",
+    "name": "ZenFlow Yoga Mat Pro",
+    "category": "Sports",
+    "price": 54.99,
+    "stock": 110,
+    "description": "6mm thick non-slip natural rubber yoga mat with alignment lines, carrying strap included.",
+    "variants": [
+      {"color": "Teal",   "stock": 40},
+      {"color": "Purple", "stock": 40},
+      {"color": "Slate",  "stock": 30}
+    ],
+    "specs": {
+      "thickness": "6mm",
+      "material": "Natural rubber + microfiber top",
+      "dimensions": "183cm x 61cm",
+      "features": "Alignment lines, non-slip bottom, carrying strap"
+    }
+  },
+  {
+    "sku": "BOOK-001",
+    "name": "Deep Work by Cal Newport (Paperback)",
+    "category": "Books",
+    "price": 14.99,
+    "stock": 75,
+    "description": "Bestselling book on focused work and eliminating distraction. 296 pages.",
+    "variants": [
+      {"format": "Paperback", "stock": 75}
+    ],
+    "specs": {
+      "pages": 296,
+      "publisher": "Grand Central Publishing",
+      "isbn": "978-1455586691",
+      "language": "English"
+    }
+  },
+  {
+    "sku": "BOOK-002",
+    "name": "Atomic Habits by James Clear (Hardcover)",
+    "category": "Books",
+    "price": 18.99,
+    "stock": 60,
+    "description": "Practical guide to building good habits and breaking bad ones. 320 pages.",
+    "variants": [
+      {"format": "Hardcover", "stock": 60}
+    ],
+    "specs": {
+      "pages": 320,
+      "publisher": "Avery",
+      "isbn": "978-0735211292",
+      "language": "English"
+    }
+  },
+  {
+    "sku": "ACC-001",
+    "name": "SlimShield Phone Case — Universal 6.1\"",
+    "category": "Accessories",
+    "price": 12.99,
+    "stock": 300,
+    "description": "Slim matte TPU case with MagSafe-compatible ring, fits most 6.1\" smartphones.",
+    "variants": [
+      {"color": "Clear",      "stock": 100},
+      {"color": "Matte Black","stock": 100},
+      {"color": "Dusty Rose", "stock": 100}
+    ],
+    "specs": {
+      "material": "Flexible TPU",
+      "magsafe_compatible": true,
+      "compatibility": "Universal 6.1\" phones",
+      "drop_protection": "Military-grade MIL-STD-810G"
+    }
+  },
+  {
+    "sku": "ACC-002",
+    "name": "CablePro Braided USB-C to USB-C Cable 2m",
+    "category": "Accessories",
+    "price": 9.99,
+    "stock": 400,
+    "description": "240W USB4 braided cable, 2m length, compatible with laptops, phones, and monitors.",
+    "variants": [
+      {"color": "Black", "stock": 200},
+      {"color": "White", "stock": 200}
+    ],
+    "specs": {
+      "length": "2m",
+      "max_power": "240W",
+      "data_transfer": "USB4 (40Gbps)",
+      "material": "Braided nylon"
+    }
+  },
+  {
+    "sku": "ELEC-005",
+    "name": "SoundBar Mini BT5 Portable Speaker",
+    "category": "Electronics",
+    "price": 44.99,
+    "stock": 85,
+    "description": "Compact cylindrical Bluetooth speaker with 360° sound, 20hr battery, and IPX7.",
+    "variants": [
+      {"color": "Coral Red",  "stock": 30},
+      {"color": "Ocean Blue", "stock": 30},
+      {"color": "Matte Black","stock": 25}
+    ],
+    "specs": {
+      "battery": "20 hours",
+      "connectivity": "Bluetooth 5.0",
+      "water_resistance": "IPX7 (fully submersible 30min)",
+      "output": "10W RMS",
+      "sound": "360-degree"
+    }
+  },
+  {
+    "sku": "HOME-004",
+    "name": "SmartPlug Mini Wi-Fi Outlet (2-Pack)",
+    "category": "Home",
+    "price": 22.99,
+    "stock": 160,
+    "description": "Wi-Fi smart plug with energy monitoring, works with Alexa and Google Home. 2-pack.",
+    "variants": [
+      {"pack": "2-pack", "stock": 160}
+    ],
+    "specs": {
+      "connectivity": "2.4GHz Wi-Fi",
+      "max_load": "15A / 1800W",
+      "energy_monitoring": true,
+      "compatibility": "Amazon Alexa, Google Home, SmartThings",
+      "timer_scheduling": true
+    }
+  }
+]
