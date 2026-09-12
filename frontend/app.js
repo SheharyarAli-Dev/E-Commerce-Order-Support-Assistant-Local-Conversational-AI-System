@@ -1,16 +1,114 @@
 /**
- * ShopBot — Frontend Application
+ * ShopBot — Enhanced Frontend Application
  *
  * Handles:
+ *  - Animated canvas background (floating particles + mouse parallax)
  *  - WebSocket connection management with auto-reconnect
  *  - Streaming token display (word-by-word as received)
  *  - Session creation and reset via REST API
- *  - Intent badge updates
+ *  - Intent badge updates + capability highlights
  *  - Markdown-like rendering (bold, lists, tables)
  *  - Error toasts and connection status
  */
 
 'use strict';
+
+// ── Animated Canvas Background ────────────────────────────────────────────────
+(function initCanvas() {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let W, H, particles, mouse = { x: 0, y: 0 };
+
+  const PARTICLE_COUNT = 55;
+  const COLORS = ['#5b9cf6', '#7b61ff', '#22d3ee', '#4ade80', '#c084fc'];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function mkParticle() {
+    return {
+      x:   Math.random() * W,
+      y:   Math.random() * H,
+      r:   Math.random() * 1.8 + 0.4,
+      vx:  (Math.random() - 0.5) * 0.35,
+      vy:  (Math.random() - 0.5) * 0.35,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      alpha: Math.random() * 0.5 + 0.15,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.012 + Math.random() * 0.018,
+    };
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({ length: PARTICLE_COUNT }, mkParticle);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const p = particles[i], q = particles[j];
+        const dx = p.x - q.x, dy = p.y - q.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130) {
+          ctx.beginPath();
+          ctx.strokeStyle = p.color;
+          ctx.globalAlpha = (1 - dist / 130) * 0.06;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw particles
+    for (const p of particles) {
+      p.pulse += p.pulseSpeed;
+      const pulse = 0.7 + Math.sin(p.pulse) * 0.3;
+
+      // Mouse parallax repulsion
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const d  = Math.sqrt(dx * dx + dy * dy);
+      if (d < 100) {
+        p.x += (dx / d) * 0.6;
+        p.y += (dy / d) * 0.6;
+      }
+
+      ctx.beginPath();
+      ctx.globalAlpha = p.alpha * pulse;
+      ctx.fillStyle = p.color;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 8;
+      ctx.arc(p.x, p.y, p.r * pulse, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Move
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < -10) p.x = W + 10;
+      if (p.x > W + 10) p.x = -10;
+      if (p.y < -10) p.y = H + 10;
+      if (p.y > H + 10) p.y = -10;
+    }
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  init();
+  draw();
+})();
 
 // ── Configuration ────────────────────────────────────────────────────────────
 const CONFIG = {
@@ -236,7 +334,9 @@ function appendUserMessage(text) {
   const div = document.createElement('div');
   div.className = 'message message-user';
   div.innerHTML = `
-    <div class="message-avatar">👤</div>
+    <div class="message-avatar">
+      <span>👤</span>
+    </div>
     <div class="message-content">
       <div class="message-bubble">${escapeHtml(text)}</div>
       <div class="message-time">You</div>
@@ -255,7 +355,11 @@ function appendBotMessage(text, streaming = false) {
     bubble.innerHTML = renderMarkdown(text);
   }
 
-  div.innerHTML = `<div class="message-avatar">🤖</div>`;
+  const avatarDiv = document.createElement('div');
+  avatarDiv.className = 'message-avatar bot-avatar';
+  avatarDiv.innerHTML = '<span>🤖</span>';
+  div.appendChild(avatarDiv);
+
   const content = document.createElement('div');
   content.className = 'message-content';
   content.appendChild(bubble);
@@ -274,7 +378,7 @@ function appendErrorMessage(text) {
   const div = document.createElement('div');
   div.className = 'message message-assistant message-error';
   div.innerHTML = `
-    <div class="message-avatar">🤖</div>
+    <div class="message-avatar bot-avatar"><span>🤖</span></div>
     <div class="message-content">
       <div class="message-bubble">⚠️ ${escapeHtml(text)}</div>
       <div class="message-time">ShopBot</div>
@@ -286,7 +390,7 @@ function appendWelcomeMessage() {
   const div = document.createElement('div');
   div.className = 'message message-assistant';
   div.innerHTML = `
-    <div class="message-avatar">🤖</div>
+    <div class="message-avatar bot-avatar"><span>🤖</span></div>
     <div class="message-content">
       <div class="message-bubble">
         <p>👋 Hi! I'm <strong>ShopBot</strong>, your order support assistant.</p>

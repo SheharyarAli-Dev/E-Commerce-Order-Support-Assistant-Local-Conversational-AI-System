@@ -5,21 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="ShopBot — Your AI order support assistant for product questions, order tracking, and return policy." />
   <title>ShopBot — Order Support Assistant</title>
+
+  <!-- Lexend font — all weights used -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
 
+  <!-- ══ Animated background canvas ════════════════════════════════════════ -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
   <!-- ══ Sidebar ═══════════════════════════════════════════════════════════ -->
   <aside class="sidebar" id="sidebar">
+
+    <!-- Sidebar glow orb texture -->
+    <div class="sidebar-orb" aria-hidden="true"></div>
+
     <div class="sidebar-header">
       <div class="brand">
-        <div class="brand-avatar">🤖</div>
+        <div class="brand-avatar">
+          <span class="brand-avatar-emoji">🤖</span>
+          <div class="brand-avatar-ring"></div>
+        </div>
         <div>
           <div class="brand-name">ShopBot</div>
-          <div class="brand-tagline">Order Support AI</div>
+          <div class="brand-tagline">Order Support AI &nbsp;·&nbsp; Always On</div>
         </div>
       </div>
     </div>
@@ -28,23 +41,23 @@
       <p class="sidebar-label">I can help with</p>
       <div class="capability-list">
         <div class="capability-item" id="cap-product">
-          <span class="cap-icon">🛍️</span>
+          <div class="cap-icon-wrap product-icon">🛍️</div>
           <div>
             <div class="cap-title">Product Questions</div>
             <div class="cap-desc">Availability, specs, pricing, comparisons</div>
           </div>
         </div>
         <div class="capability-item" id="cap-order">
-          <span class="cap-icon">📦</span>
+          <div class="cap-icon-wrap order-icon">📦</div>
           <div>
             <div class="cap-title">Order Tracking</div>
             <div class="cap-desc">Status, shipment, delivery, tracking numbers</div>
           </div>
         </div>
         <div class="capability-item" id="cap-policy">
-          <span class="cap-icon">🔄</span>
+          <div class="cap-icon-wrap policy-icon">🔄</div>
           <div>
-            <div class="cap-title">Returns & Policy</div>
+            <div class="cap-title">Returns &amp; Policy</div>
             <div class="cap-desc">Returns, refunds, exchanges, shipping costs</div>
           </div>
         </div>
@@ -54,16 +67,27 @@
     <div class="sidebar-section">
       <p class="sidebar-label">Try asking</p>
       <div class="suggestion-list" id="suggestion-list">
-        <button class="suggestion-btn" data-msg="What earbuds do you sell?">🛍️ What earbuds do you sell?</button>
-        <button class="suggestion-btn" data-msg="What's the status of order ORD-10002?">📦 Track order ORD-10002</button>
-        <button class="suggestion-btn" data-msg="What's your return policy?">🔄 What's your return policy?</button>
-        <button class="suggestion-btn" data-msg="Compare the ProSound earbuds vs the SoundBar speaker">⚖️ Compare earbuds vs speaker</button>
-        <button class="suggestion-btn" data-msg="How long does standard shipping take?">🚚 Standard shipping times?</button>
+        <button class="suggestion-btn" data-msg="What earbuds do you sell?">
+          <span class="sug-icon">🛍️</span>What earbuds do you sell?
+        </button>
+        <button class="suggestion-btn" data-msg="What's the status of order ORD-10002?">
+          <span class="sug-icon">📦</span>Track order ORD-10002
+        </button>
+        <button class="suggestion-btn" data-msg="What's your return policy?">
+          <span class="sug-icon">🔄</span>What's your return policy?
+        </button>
+        <button class="suggestion-btn" data-msg="Compare the ProSound earbuds vs the SoundBar speaker">
+          <span class="sug-icon">⚖️</span>Compare earbuds vs speaker
+        </button>
+        <button class="suggestion-btn" data-msg="How long does standard shipping take?">
+          <span class="sug-icon">🚚</span>Standard shipping times?
+        </button>
       </div>
     </div>
 
     <div class="sidebar-footer">
       <button class="new-session-btn" id="new-session-btn">
+        <span class="btn-shimmer"></span>
         <span>✨</span> New Conversation
       </button>
       <div class="session-info" id="session-info">Session active</div>
@@ -75,9 +99,17 @@
 
     <!-- Header -->
     <header class="chat-header">
-      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+      </button>
+
       <div class="header-center">
-        <div class="header-avatar">🤖</div>
+        <div class="header-avatar">
+          <span>🤖</span>
+          <div class="avatar-pulse"></div>
+        </div>
         <div>
           <div class="header-title">ShopBot</div>
           <div class="header-status" id="header-status">
@@ -86,15 +118,20 @@
           </div>
         </div>
       </div>
-      <div class="header-intent-badge" id="intent-badge" style="display:none"></div>
+
+      <div class="header-right">
+        <div class="header-intent-badge" id="intent-badge" style="display:none"></div>
+      </div>
     </header>
 
     <!-- Messages -->
     <div class="messages-container" id="messages-container">
       <div class="messages-list" id="messages-list">
-        <!-- Welcome message -->
+        <!-- Welcome message injected here -->
         <div class="message message-assistant" id="welcome-msg">
-          <div class="message-avatar">🤖</div>
+          <div class="message-avatar bot-avatar">
+            <span>🤖</span>
+          </div>
           <div class="message-content">
             <div class="message-bubble">
               <p>👋 Hi! I'm <strong>ShopBot</strong>, your order support assistant.</p>
@@ -102,7 +139,7 @@
               <ul>
                 <li>🛍️ <strong>Product questions</strong> — specs, pricing, availability</li>
                 <li>📦 <strong>Order tracking</strong> — status, shipment, delivery</li>
-                <li>🔄 <strong>Returns & policy</strong> — refunds, exchanges, shipping</li>
+                <li>🔄 <strong>Returns &amp; policy</strong> — refunds, exchanges, shipping</li>
               </ul>
               <p>What can I help you with today?</p>
             </div>
@@ -113,7 +150,7 @@
 
       <!-- Typing indicator -->
       <div class="typing-indicator" id="typing-indicator" style="display:none">
-        <div class="message-avatar">🤖</div>
+        <div class="message-avatar bot-avatar"><span>🤖</span></div>
         <div class="typing-bubble">
           <span class="dot"></span>
           <span class="dot"></span>
@@ -124,7 +161,7 @@
 
     <!-- Input area -->
     <div class="input-area">
-      <div class="input-wrapper">
+      <div class="input-wrapper" id="input-wrapper">
         <textarea
           id="message-input"
           class="message-input"
@@ -134,7 +171,7 @@
           aria-label="Message input"
         ></textarea>
         <button class="send-btn" id="send-btn" aria-label="Send message" disabled>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="22" y1="2" x2="11" y2="13"></line>
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
           </svg>
@@ -142,13 +179,15 @@
       </div>
       <div class="input-footer">
         <span class="char-count" id="char-count">0 / 2000</span>
-        <span class="input-hint">Press <kbd>Enter</kbd> to send, <kbd>Shift+Enter</kbd> for new line</span>
+        <span class="input-hint">
+          <kbd>Enter</kbd> to send &nbsp;·&nbsp; <kbd>Shift+Enter</kbd> for new line
+        </span>
       </div>
     </div>
 
   </main>
 
-  <!-- ══ Error toast ══════════════════════════════════════════════════════ -->
+  <!-- ══ Toast ════════════════════════════════════════════════════════════ -->
   <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
   <script src="/static/app.js"></script>
