@@ -14,6 +14,9 @@ PRODUCTS_FILE = DATA_DIR / "products.json"
 ORDERS_FILE   = DATA_DIR / "orders.json"
 POLICY_FILE   = DATA_DIR / "policy.md"
 
+# Persisted chat history (generated at runtime — powers the frontend history sidebar)
+HISTORY_FILE  = DATA_DIR / "chat_history.json"
+
 # ── Ollama / LLM ─────────────────────────────────────────────────────────────
 OLLAMA_HOST  = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 MODEL_NAME   = os.getenv("SHOPBOT_MODEL", "qwen2.5:1.5b")

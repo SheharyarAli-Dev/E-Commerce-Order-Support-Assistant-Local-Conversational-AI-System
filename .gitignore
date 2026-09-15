@@ -32,6 +32,9 @@ logs/
 .env
 .env.local
 
+# Persisted chat history (runtime-generated, not seed data)
+data/chat_history.json
+
 # Ollama / model cache (don't commit model weights)
 *.gguf
 *.bin
