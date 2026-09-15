@@ -409,6 +409,92 @@ body::after {
 
 .sug-icon { font-size: 14px; flex-shrink: 0; }
 
+/* ── History list ─────────────────────────────────────────────────────────── */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.history-list::-webkit-scrollbar { width: 4px; }
+.history-list::-webkit-scrollbar-track { background: transparent; }
+.history-list::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
+
+.history-empty {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 10px 4px;
+  text-align: center;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  color: var(--text-secondary);
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+
+.history-item:hover {
+  background: rgba(91,156,246,0.06);
+  border-color: rgba(91,156,246,0.2);
+  color: var(--text-primary);
+}
+
+.history-item.active {
+  background: rgba(91,156,246,0.1);
+  border-color: rgba(91,156,246,0.4);
+  color: var(--text-primary);
+}
+
+.history-item-body { flex: 1; min-width: 0; }
+
+.history-item-title {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.history-item-meta {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 2px;
+  display: block;
+}
+
+.history-item-delete {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xs);
+  font-size: 12px;
+  opacity: 0;
+  transition: all var(--t-fast);
+  color: var(--text-muted);
+}
+
+.history-item:hover .history-item-delete { opacity: 1; }
+.history-item-delete:hover { background: rgba(248,113,113,0.15); color: var(--accent-red); }
+
 /* ── Sidebar footer ───────────────────────────────────────────────────────── */
 .sidebar-footer {
   position: relative;
