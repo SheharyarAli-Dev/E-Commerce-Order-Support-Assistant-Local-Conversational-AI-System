@@ -146,6 +146,7 @@ const $suggestionBtns  = document.querySelectorAll('.suggestion-btn');
 const $capProduct      = document.getElementById('cap-product');
 const $capOrder        = document.getElementById('cap-order');
 const $capPolicy       = document.getElementById('cap-policy');
+const $historyList     = document.getElementById('history-list');
 
 // ── Session management ────────────────────────────────────────────────────────
 function loadOrCreateSessionId() {
@@ -164,20 +165,14 @@ function generateUUID() {
   });
 }
 
-async function resetSession() {
+function resetSession() {
   if (isStreaming) {
     showToast('Please wait for the current response to finish.', 'error');
     return;
   }
 
-  // Delete session on server
-  if (sessionId) {
-    try {
-      await fetch(`${CONFIG.API_BASE}/session/${sessionId}`, { method: 'DELETE' });
-    } catch { /* ignore — session may have already expired */ }
-  }
-
-  // Generate new session ID
+  // Generate a new session ID. The previous conversation is left untouched
+  // on the server so it keeps showing up in the History sidebar.
   sessionId = generateUUID();
   sessionStorage.setItem(CONFIG.SESSION_KEY, sessionId);
   currentIntent = null;
@@ -192,6 +187,141 @@ async function resetSession() {
 
   showToast('New conversation started ✨', 'success');
   $sessionInfo.textContent = `Session: ${sessionId.slice(0, 8)}…`;
+  renderActiveHistoryItem();
+}
+
+// ── Conversation history sidebar ──────────────────────────────────────────────
+function timeAgo(epochSeconds) {
+  const diffMs = Date.now() - epochSeconds * 1000;
+  const mins = Math.floor(diffMs / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m ago`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
+}
+
+async function loadHistoryList() {
+  try {
+    const res = await fetch(`${CONFIG.API_BASE}/sessions`);
+    if (!res.ok) return;
+    const data = await res.json();
+    renderHistoryList(data.sessions || []);
+  } catch {
+    /* history sidebar is a non-critical enhancement — fail silently */
+  }
+}
+
+function renderHistoryList(sessions) {
+  $historyList.innerHTML = '';
+
+  if (!sessions.length) {
+    const empty = document.createElement('div');
+    empty.className = 'history-empty';
+    empty.id = 'history-empty';
+    empty.textContent = 'No past conversations yet';
+    $historyList.appendChild(empty);
+    return;
+  }
+
+  for (const s of sessions) {
+    const item = document.createElement('button');
+    item.className = 'history-item' + (s.session_id === sessionId ? ' active' : '');
+    item.dataset.sessionId = s.session_id;
+
+    const body = document.createElement('div');
+    body.className = 'history-item-body';
+
+    const title = document.createElement('span');
+    title.className = 'history-item-title';
+    title.textContent = s.title;
+
+    const meta = document.createElement('span');
+    meta.className = 'history-item-meta';
+    meta.textContent = `${s.message_count} msg${s.message_count === 1 ? '' : 's'} · ${timeAgo(s.last_active)}`;
+
+    body.appendChild(title);
+    body.appendChild(meta);
+
+    const del = document.createElement('span');
+    del.className = 'history-item-delete';
+    del.textContent = '🗑️';
+    del.title = 'Delete conversation';
+    del.addEventListener('click', (e) => {
+      e.stopPropagation();
+      deleteHistorySession(s.session_id);
+    });
+
+    item.appendChild(body);
+    item.appendChild(del);
+
+    item.addEventListener('click', () => selectHistorySession(s.session_id));
+
+    $historyList.appendChild(item);
+  }
+}
+
+function renderActiveHistoryItem() {
+  document.querySelectorAll('.history-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.sessionId === sessionId);
+  });
+}
+
+async function selectHistorySession(id) {
+  if (id === sessionId) return;
+  if (isStreaming) {
+    showToast('Please wait for the current response to finish.', 'error');
+    return;
+  }
+
+  try {
+    const res = await fetch(`${CONFIG.API_BASE}/session/${id}/history`);
+    if (!res.ok) {
+      showToast('Could not load that conversation.', 'error');
+      return;
+    }
+    const data = await res.json();
+
+    sessionId = id;
+    sessionStorage.setItem(CONFIG.SESSION_KEY, sessionId);
+    currentIntent = null;
+
+    $messagesList.innerHTML = '';
+    if (!data.messages.length) {
+      appendWelcomeMessage();
+    } else {
+      for (const m of data.messages) {
+        if (m.role === 'user') appendUserMessage(m.content);
+        else appendBotMessage(m.content);
+      }
+      // Re-derive the last known intent from the latest user message
+      const lastUserMsg = [...data.messages].reverse().find(m => m.role === 'user');
+      if (lastUserMsg) {
+        const intent = detectIntentFromText(lastUserMsg.content);
+        if (intent) updateIntentBadge(intent);
+      }
+    }
+
+    $sessionInfo.textContent = `Session: ${sessionId.slice(0, 8)}…`;
+    renderActiveHistoryItem();
+    scrollToBottom();
+
+    if (window.innerWidth < 640) $sidebar.classList.remove('open');
+  } catch {
+    showToast('Could not load that conversation.', 'error');
+  }
+}
+
+async function deleteHistorySession(id) {
+  try {
+    await fetch(`${CONFIG.API_BASE}/history/${id}`, { method: 'DELETE' });
+  } catch { /* ignore */ }
+
+  if (id === sessionId) {
+    resetSession();
+  }
+  loadHistoryList();
 }
 
 // ── WebSocket ─────────────────────────────────────────────────────────────────
@@ -299,6 +429,8 @@ function finishStreaming(disconnected = false) {
   $currentBotBubble = null;
   currentBotText    = '';
   scrollToBottom();
+
+  if (!disconnected) loadHistoryList();
 }
 
 // ── Send message ──────────────────────────────────────────────────────────────
@@ -666,6 +798,7 @@ function init() {
   setStatus('connecting');
   connect();
   enableInput(false);
+  loadHistoryList();
 }
 
 init();
