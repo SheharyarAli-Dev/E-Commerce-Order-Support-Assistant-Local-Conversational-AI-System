@@ -135,7 +135,8 @@ body::after {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   transition: width var(--t-slow), transform var(--t-slow);
 
   /* Glassmorphism */
