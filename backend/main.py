@@ -24,8 +24,9 @@ from fastapi.responses import FileResponse
 
 from backend.config import ALLOWED_ORIGINS
 from backend.llm_engine import LLMEngine, LLMEngineError
-from backend.conversation_manager.session import SessionStore
+from backend.conversation_manager.session import SessionStore, Turn
 from backend.conversation_manager import ConversationManager
+from backend import history_store
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -142,6 +143,43 @@ async def reset_session(session_id: str):
     return {"status": "reset", "session_id": session_id}
 
 
+@app.get("/api/sessions")
+async def list_sessions():
+    """List past conversations (for the frontend history sidebar)."""
+    return {"sessions": history_store.list_sessions()}
+
+
+@app.get("/api/session/{session_id}/history")
+async def get_session_history(session_id: str):
+    """
+    Return the persisted turn list for a past conversation, and hydrate the
+    live SessionStore so the conversation can continue with full context if
+    the user keeps chatting in it.
+    """
+    messages = history_store.get_session_messages(session_id)
+    if messages is None:
+        raise HTTPException(status_code=404, detail="No history found for this session")
+
+    session = _session_store.get_or_create(session_id)
+    if not session.history and messages:
+        session.history.extend(
+            Turn(role=m["role"], content=m["content"], timestamp=m["timestamp"])
+            for m in messages
+        )
+
+    return {"session_id": session_id, "messages": messages}
+
+
+@app.delete("/api/history/{session_id}")
+async def delete_session_history(session_id: str):
+    """Permanently remove a conversation from the history sidebar."""
+    removed = history_store.delete_session(session_id)
+    _session_store.delete(session_id)
+    if not removed:
+        raise HTTPException(status_code=404, detail="Session not found in history")
+    return {"status": "deleted", "session_id": session_id}
+
+
 # ── WebSocket Endpoint ────────────────────────────────────────────────────────
 
 @app.websocket("/ws/chat")
@@ -198,13 +236,16 @@ async def websocket_chat(websocket: WebSocket):
                     await websocket.send_json({"type": "token", "content": token})
 
                 await websocket.send_json({"type": "done", "content": ""})
+                history_store.save_session(session)
                 logger.info(f"[{session_id[:8]}] Response complete")
 
             except LLMEngineError as e:
                 logger.error(f"LLMEngineError in session {session_id[:8]}: {e}")
+                history_store.save_session(session)
                 await _send_error(websocket, f"Model error: {e}")
             except Exception as e:
                 logger.exception(f"Unexpected error in session {session_id[:8]}: {e}")
+                history_store.save_session(session)
                 await _send_error(websocket, "An unexpected error occurred. Please try again.")
 
     except Exception as e:
